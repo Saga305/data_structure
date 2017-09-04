@@ -201,23 +201,4 @@ void Q::deleteQ()
 	q = NULL;
 }
 
-int main()  {
-	Q obj;
-	int val;
-	if(obj.createQ(4))
-	{
-		printf ("Queue Created Successfully\n");
-	}
-	printf ("Q capacity = %d front =%d rear = %d\n", obj.Qcapacity(), obj.front(), obj.rear());
-	obj.enQ(25);
-	printf ("Enq 25:: Q capacity = %d front =%d rear = %d\n", obj.Qcapacity(), obj.front(), obj.rear());
-	obj.enQ(22);
-	printf ("Enq 22:: Q capacity = %d front =%d rear = %d\n", obj.Qcapacity(), obj.front(), obj.rear());
-	val = obj.deQ();
-	printf ("deq 25:: Q capacity = %d front =%d rear = %d val = %d\n", obj.Qcapacity(), obj.front(), obj.rear(),val);
-	val = obj.deQ();
-	printf ("deq 22:: Q capacity = %d front =%d rear = %d val = %d\n", obj.Qcapacity(), obj.front(), obj.rear(),val);
 
-
-return 0;
-}
