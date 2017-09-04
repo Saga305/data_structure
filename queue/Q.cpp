@@ -84,19 +84,10 @@ void Q::halfQ()
 {
 		int i = 0, j;
 		int* temp = (int*) malloc((q->capacity/2)* sizeof(int));
-		if(front() == rear())
-		{
-			temp[0] = q->arr[front()];
-			q->front = q->rear = 0;
-			free(q->arr);
-			q->arr = temp;
-			q->capacity /= 2;
-			return;
-		}
 		for(j = q->front; i < (q->capacity/2) ; i++)
 		{
 			temp[i] = q->arr[j];
-			if(j == q->capacity - 1)
+			if(j == q->capacity-1)
 			{
 				j = 0;
 			}
@@ -108,8 +99,16 @@ void Q::halfQ()
 		free(q->arr);
 		q->arr = temp;
 		q->capacity /= 2;
-		q->rear = q->capacity-1;
-		q->front = 0;
+//NOTE: 
+		if(q->capacity == 1)
+		{
+			q->front = q->rear = -1;
+		}
+		else
+		{
+			q->rear = q->capacity-1;
+			q->front = 0;
+		}
 }
 
 void Q::enQ(int val)
@@ -170,7 +169,6 @@ int Q::deQ()
 	{
 		if(Qsize() <= Qcapacity()/2)
 		{
-			printf("halfQ\n");
 			halfQ();
 		}
 	}
