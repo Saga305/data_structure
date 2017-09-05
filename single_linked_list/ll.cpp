@@ -5,23 +5,23 @@ void LL::addAtEnd(int data)
 	ll *temp;
 	temp =(ll *) malloc(sizeof(ll));
 	temp->data = data;
-	
+
 	if(hd == NULL)
 	{
 		temp->link = NULL;
 		hd = temp;
-    }
-    else
-    {
-    	ll *tm;
-    	tm = hd;
-    	while(tm->link != NULL)
-    	{
-    		tm = tm->link;
-    	}
-    	temp->link = NULL;
-    	tm->link = temp;
-    }
+	}
+	else
+	{
+		ll *tm;
+		tm = hd;
+		while(tm->link != NULL)
+		{
+			tm = tm->link;
+		}
+		temp->link = NULL;
+		tm->link = temp;
+	}
 }
 
 void LL::addAtBegin(int data)
@@ -44,6 +44,10 @@ void LL::addAtBegin(int data)
 void LL::print()
 {
 	ll *temp = hd;
+	if( temp == NULL)
+	{
+		printf("[LL::print] List is empty\n");
+	}
 	while(temp != NULL)
 	{
 		printf ("%d-->",temp->data);
@@ -95,7 +99,7 @@ void LL::del(int loc)
 
 void LL::addAtAfter(int loc,int data)
 {
-	
+
 	if(length() < loc)
 	{
 		printf("[LL::AddAtAfter] Invaliid location specified %d, list length is %d\n",loc,length());
