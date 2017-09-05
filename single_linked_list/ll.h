@@ -25,6 +25,7 @@ public:
 	void print();
 	int length();
 	void del(int);
+	void addAtAfter(int,int);
 };
 
 

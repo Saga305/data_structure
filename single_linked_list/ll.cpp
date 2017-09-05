@@ -46,9 +46,10 @@ void LL::print()
 	ll *temp = hd;
 	while(temp != NULL)
 	{
-		printf ("%d\t",temp->data);
+		printf ("%d-->",temp->data);
 		temp = temp->link;
 	}
+	printf("\n");
 }
 
 int LL::length()
@@ -79,7 +80,7 @@ void LL::del(int loc)
 	else
 	{
 		ll *temp = hd;
-		i = 1;
+		int i = 1;
 		while(i < loc - 1)  //Stop before node you want to delete
 		{
 			temp = temp->link;
@@ -91,17 +92,40 @@ void LL::del(int loc)
 		free(tm);
 	}
 }
+
+void LL::addAtAfter(int loc,int data)
+{
+	
+	if(length() < loc)
+	{
+		printf("[LL::AddAtAfter] Invaliid location specified %d, list length is %d\n",loc,length());
+	}
+	else
+	{
+		ll *temp = hd;
+		int i = 1;
+		while(i < loc)  
+		{
+			temp = temp->link;
+			i++;
+		}
+		ll *tm = (ll*)malloc(sizeof(ll));
+		tm->data = data;
+		tm->link = temp->link;
+		temp->link = tm;
+
+	}
+}
 int main()
 {
 	LL *ob = new LL();
 	ob->addAtEnd(20);
-	printf("lenght = %d\n",ob->length());
 	ob->addAtBegin(30);
 	ob->addAtEnd(50);
 	ob->addAtEnd(100);
-	printf("lenght = %d\n",ob->length());
 	ob->print();
-	ob->del(1);
+	ob->addAtAfter(2,400);
+	ob->del(5);
 	ob->print();
 
 }
