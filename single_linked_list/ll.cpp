@@ -1,6 +1,12 @@
 #include"ll.h"
 
-void LL::addAtEnd(int data)
+ll *loop = NULL;
+ll *loop1 = NULL;
+
+/*
+@func sadd is used to strore the address of the node to create link
+*/
+void LL::addAtEnd(int data, bool sadd)
 {
 	ll *temp;
 	temp =(ll *) malloc(sizeof(ll));
@@ -22,9 +28,14 @@ void LL::addAtEnd(int data)
 		temp->link = NULL;
 		tm->link = temp;
 	}
+	if(sadd)
+	{
+		loop = temp;
+		printf ("[addAtEnd] Loop data = %d\n",loop->data);
+	}
 }
 
-void LL::addAtBegin(int data)
+void LL::addAtBegin(int data,bool sadd)
 {
 	ll *temp;
 	temp =(ll *) malloc(sizeof(ll));
@@ -38,6 +49,12 @@ void LL::addAtBegin(int data)
 	{
 		temp->link = hd;
 		hd= temp;
+	}
+
+	if(sadd)
+	{
+		loop1= hd;
+		printf ("[addAtBegin] Loop1 data = %d\n",loop1->data);
 	}
 }
 
@@ -120,16 +137,82 @@ void LL::addAtAfter(int loc,int data)
 
 	}
 }
+
+void LL::reverse()
+{
+	ll *prev = NULL;
+	ll *current = hd;
+	ll *next;
+	while(current->link != NULL)
+	{
+		next = current->link;
+		current->link = prev;
+		prev = current;
+		current = next;
+	}
+	hd = prev;
+}
+
+bool LL::hasloop()
+{
+	ll *slow = hd;
+	ll *fast = hd;
+	while(fast->link != NULL)
+	{
+		if (slow->link)
+		{
+			slow = slow->link;
+		}
+		if(fast->link)
+		{
+			fast = fast->link;
+		}
+		if(fast->link)
+		{
+			fast = fast->link;
+		}
+		if(slow == fast)
+		{
+			slow = hd;
+			while(slow != fast)
+			{
+				if (slow->link)
+				{
+					slow = slow->link;
+				}
+				if(fast->link)
+				{
+					fast = fast->link;
+				}
+				if(slow == fast)
+				{
+					printf ("Loop node data = %d\n",slow->data);
+				}
+			}
+			return true;
+		}
+	}
+	return false;
+}
+
 int main()
 {
 	LL *ob = new LL();
-	ob->addAtEnd(20);
-	ob->addAtBegin(30);
+	ob->addAtBegin(15,true);
+    ob->addAtBegin(10);
+    ob->addAtBegin(11);
+    ob->addAtBegin(22);
 	ob->addAtEnd(50);
-	ob->addAtEnd(100);
+	ob->addAtEnd(100,true);
+//	ob->addAtAfter(2,400);
+	
+//	ob->addAtBegin(129);
+//	ob->print();
+//	ob->print();
+//	ob->reverse();
 	ob->print();
-	ob->addAtAfter(2,400);
-	ob->del(5);
-	ob->print();
+	printf("Given linked list hasloop = %d\n",ob->hasloop());
+	loop->link = loop1;
+	printf("Given linked list hasloop = %d\n",ob->hasloop());
 
 }

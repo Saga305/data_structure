@@ -20,10 +20,12 @@ class LL
 		{
 			hd = NULL;
 		}
-		void addAtEnd(int);
-		void addAtBegin(int);
+		void addAtEnd(int, bool= false);
+		void addAtBegin(int, bool= false);
 		void print();
 		int length();
 		void del(int);
 		void addAtAfter(int,int);
+		void reverse();
+		bool hasloop();
 };
