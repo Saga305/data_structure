@@ -28,4 +28,6 @@ class LL
 		void addAtAfter(int,int);
 		void reverse();
 		bool hasloop();
+		void rec(ll *);
+		void recuricveRev();
 };

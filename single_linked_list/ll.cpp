@@ -195,6 +195,29 @@ bool LL::hasloop()
 	return false;
 }
 
+void LL::rec(ll *temp)
+{
+
+	if (temp == NULL)
+	{
+		return;
+	}
+
+	if(temp->link == NULL)
+	{
+		hd = temp;
+		return;
+	}
+	rec(temp->link);
+	temp->link->link = temp;
+	temp->link = NULL;
+}
+
+void LL::recuricveRev() {
+	ll *temp = hd;
+	rec(temp);
+}
+
 int main()
 {
 	LL *ob = new LL();
@@ -210,6 +233,8 @@ int main()
 //	ob->print();
 //	ob->print();
 //	ob->reverse();
+	ob->print();
+	ob->recuricveRev();
 	ob->print();
 	printf("Given linked list hasloop = %d\n",ob->hasloop());
 	loop->link = loop1;
