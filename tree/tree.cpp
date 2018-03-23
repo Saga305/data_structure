@@ -70,19 +70,33 @@ void T::display(tree *t)
 	 display(t->right);
 }
 
+int T::depth(tree *t)
+{
+	if( t == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		int ld = depth(t->left);
+		int rd = depth(t->right);
+		if(ld > rd)
+		{
+			return ld + 1;
+		}
+		else
+		{
+			return rd + 1;
+		}
+	}
+}
 int main()
 {
 T t;
-t.insert(20);
 t.insert(10);
+t.insert(9);
 t.insert(15);
-t.insert(25);
-t.insert(30);
-t.insert(35);
-t.insert(40);
-t.insert(45);
-t.insert(50);
-t.insert(55);
 t.display(t.rot());
+std::cout<<" \n Depth = "<<t.depth(t.rot())<<std::endl;
 return 0;
 }

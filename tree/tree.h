@@ -19,6 +19,7 @@ public:
 	void insert(int);
 	void display(tree *);
 	tree* createNode();
+	int depth(tree *);
 	tree* rot()
 	{
 		return root;
