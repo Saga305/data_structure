@@ -70,8 +70,9 @@ void T::display(tree *t)
 	 display(t->right);
 }
 
-int T::depth(tree *t)
+int T::depth(tree *c)
 {
+	tree *t = c;
 	if( t == NULL)
 	{
 		return 0;
@@ -90,13 +91,38 @@ int T::depth(tree *t)
 		}
 	}
 }
+
+int T::min(tree *t)
+{
+	tree * curr = t;
+	while( curr->left != NULL)
+	{
+		curr = curr->left;
+	}
+	return curr->data;
+}
+
+int T::max(tree *t)
+{
+	tree * curr = t;
+	while( curr->right != NULL)
+	{
+		curr = curr->right;
+	}
+	return curr->data;
+}
+
 int main()
 {
 T t;
 t.insert(10);
 t.insert(9);
 t.insert(15);
+t.insert(1);
+t.insert(3);
 t.display(t.rot());
 std::cout<<" \n Depth = "<<t.depth(t.rot())<<std::endl;
+std::cout<<" \n Min = "<<t.min(t.rot())<<std::endl;
+std::cout<<" \n Max = "<<t.max(t.rot())<<std::endl;
 return 0;
 }

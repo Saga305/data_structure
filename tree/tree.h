@@ -20,6 +20,8 @@ public:
 	void display(tree *);
 	tree* createNode();
 	int depth(tree *);
+	int min(tree *);
+	int max(tree *);
 	tree* rot()
 	{
 		return root;
