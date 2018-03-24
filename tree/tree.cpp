@@ -112,17 +112,76 @@ int T::max(tree *t)
 	return curr->data;
 }
 
+tree * T::minNode(tree *t)
+{
+	tree * curr = t;
+	while( curr->left != NULL)
+	{
+		curr = curr->left;
+	}
+	return curr;
+}
+
+tree * T::del(tree *root,int data)
+{
+	if (root == NULL) return root;
+
+	// If the data to be deleted is smaller than the root's data,
+	// then it lies in left subtree
+	if (data < root->data)
+		root->left = del(root->left, data);
+
+	// If the data to be deleted is greater than the root's data,
+	// then it lies in right subtree
+	else if (data > root->data)
+		root->right = del(root->right, data);
+
+	// if data is same as root's data, then This is the tree
+	// to be deleted
+	else
+	{
+		// tree with only one child or no child
+		if (root->left == NULL)
+		{
+			tree *temp = root->right;
+			free(root);
+			return temp;
+		}
+		else if (root->right == NULL)
+		{
+			tree *temp = root->left;
+			free(root);
+			return temp;
+		}
+
+		// tree with two children: Get the inorder successor (smallest
+		// in the right subtree)
+		tree* temp = minNode(root->right);
+
+		// Copy the inorder successor's content to this tree
+		root->data = temp->data;
+
+		// Delete the inorder successor
+		root->right = del(root->right, temp->data);
+	}
+	return root;
+}
+
 int main()
 {
 T t;
-t.insert(10);
-t.insert(9);
-t.insert(15);
-t.insert(1);
-t.insert(3);
+t.insert(50);
+t.insert(30);
+t.insert(70);
+t.insert(60);
+t.insert(80);
+t.insert(20);
+t.insert(40);
 t.display(t.rot());
 std::cout<<" \n Depth = "<<t.depth(t.rot())<<std::endl;
 std::cout<<" \n Min = "<<t.min(t.rot())<<std::endl;
 std::cout<<" \n Max = "<<t.max(t.rot())<<std::endl;
+t.rooot(t.del(t.rot(),50));
+t.display(t.rot());
 return 0;
 }

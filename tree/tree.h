@@ -21,9 +21,15 @@ public:
 	tree* createNode();
 	int depth(tree *);
 	int min(tree *);
+	tree *  minNode(tree *);
 	int max(tree *);
+	tree * del(tree *,int );
 	tree* rot()
 	{
 		return root;
+	}
+	void rooot(tree * t)
+	{
+		root =  t;
 	}
 };
