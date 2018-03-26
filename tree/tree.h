@@ -23,7 +23,12 @@ public:
 	int min(tree *);
 	tree *  minNode(tree *);
 	int max(tree *);
+	int max (int a, int b)
+	{
+		return (a>b)?a:b;
+	}
 	tree * del(tree *,int );
+	int diameter(tree *);
 	tree* rot()
 	{
 		return root;

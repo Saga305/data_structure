@@ -167,6 +167,22 @@ tree * T::del(tree *root,int data)
 	return root;
 }
 
+int T::diameter(tree *root)
+{
+	tree * t= root;
+	if(t == NULL)
+	{
+		return 0;
+	}
+	int lh = depth(t->left);
+	int rh = depth(t->right);
+
+	int ld = diameter(t->left);
+	int rd = diameter(t->right);
+
+	return max(lh+rh+1,max(ld,rd));
+}
+
 int main()
 {
 T t;
@@ -183,5 +199,6 @@ std::cout<<" \n Min = "<<t.min(t.rot())<<std::endl;
 std::cout<<" \n Max = "<<t.max(t.rot())<<std::endl;
 t.rooot(t.del(t.rot(),50));
 t.display(t.rot());
+std::cout<<" \n Diameter = "<<t.diameter(t.rot())<<std::endl;
 return 0;
 }
