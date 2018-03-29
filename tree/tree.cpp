@@ -3,13 +3,13 @@ T::T() {
 	root = NULL;
 }
 
-tree * T::createNode()
+tree * T::createNode(int d= 0)
 {
 	
 	tree *t = (tree*)malloc(sizeof(tree));
 	if(t)
 	{
-		t->data = 0;
+		t->data = d;
 		t->left = NULL;
 		t->right = NULL;
 	}
@@ -216,6 +216,11 @@ bool T::isMirror(tree* t1, tree* t2)
 	return (t1->data == t2->data && isMirror(t1->left,t2->right) && isMirror(t1->right,t2->left));
 }
 
+bool T::isSym(tree *t)
+{
+	return T::isMirror(t,t);
+}
+
 int main()
 {
 T t;
@@ -245,5 +250,18 @@ t1.insert(80);
 t1.insert(20);
 t1.insert(40);
 std::cout<<" Is mirror = "<<T::isMirror(t.rot(),t1.rot())<<std::endl;
+
+//Symmetric Tree
+T t2;
+t2.rooot(t2.createNode(1));
+t2.rot()->left= t2.createNode(2);
+t2.rot()->right= t2.createNode(2);
+t2.rot()->left->left= t2.createNode(3);
+t2.rot()->right->right= t2.createNode(3);
+t2.rot()->left->right= t2.createNode(4);
+t2.rot()->right->left= t2.createNode(4);
+t2.display(t2.rot());
+std::cout<<"\n Is Symmetric = "<<T::isSym(t2.rot())<<std::endl;
+
 return 0;
 }

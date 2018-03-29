@@ -18,7 +18,7 @@ public:
 	T();
 	void insert(int);
 	void display(tree *);
-	tree* createNode();
+	tree* createNode(int d);
 	int depth(tree *);
 	int min(tree *);
 	void mirror(tree *);
@@ -39,4 +39,5 @@ public:
 		root =  t;
 	}
 	static bool isMirror( tree*, tree *);
+	static bool isSym( tree*);
 };
