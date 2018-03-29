@@ -21,6 +21,7 @@ public:
 	tree* createNode();
 	int depth(tree *);
 	int min(tree *);
+	void mirror(tree *);
 	tree *  minNode(tree *);
 	int max(tree *);
 	int max (int a, int b)

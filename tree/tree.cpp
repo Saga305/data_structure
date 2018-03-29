@@ -183,6 +183,25 @@ int T::diameter(tree *root)
 	return max(lh+rh+1,max(ld,rd));
 }
 
+void T::mirror(tree * t)
+{
+	if(t == NULL)
+	{
+		return;
+	}
+	else
+	{
+		tree * temp;
+
+		mirror(t->left);
+		mirror(t->right);
+
+		temp = t->left;
+		t->left = t->right;
+		t->right = temp;
+	}
+}
+
 int main()
 {
 T t;
@@ -198,6 +217,9 @@ std::cout<<" \n Depth = "<<t.depth(t.rot())<<std::endl;
 std::cout<<" \n Min = "<<t.min(t.rot())<<std::endl;
 std::cout<<" \n Max = "<<t.max(t.rot())<<std::endl;
 t.rooot(t.del(t.rot(),50));
+t.display(t.rot());
+std::cout<<std::endl;
+t.mirror(t.rot());
 t.display(t.rot());
 std::cout<<" \n Diameter = "<<t.diameter(t.rot())<<std::endl;
 return 0;
