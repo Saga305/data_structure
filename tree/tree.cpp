@@ -201,6 +201,20 @@ void T::mirror(tree * t)
 		t->right = temp;
 	}
 }
+bool T::isMirror(tree* t1, tree* t2)
+{
+	if( t1 == NULL && t2 == NULL)
+	{
+		return true;
+	}
+
+	if( t1 == NULL || t2 == NULL)
+	{
+		return false;
+	}
+
+	return (t1->data == t2->data && isMirror(t1->left,t2->right) && isMirror(t1->right,t2->left));
+}
 
 int main()
 {
@@ -222,5 +236,14 @@ std::cout<<std::endl;
 t.mirror(t.rot());
 t.display(t.rot());
 std::cout<<" \n Diameter = "<<t.diameter(t.rot())<<std::endl;
+
+T t1;
+t1.insert(60);
+t1.insert(30);
+t1.insert(70);
+t1.insert(80);
+t1.insert(20);
+t1.insert(40);
+std::cout<<" Is mirror = "<<T::isMirror(t.rot(),t1.rot())<<std::endl;
 return 0;
 }

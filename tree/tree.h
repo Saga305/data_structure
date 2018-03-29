@@ -38,4 +38,5 @@ public:
 	{
 		root =  t;
 	}
+	static bool isMirror( tree*, tree *);
 };
